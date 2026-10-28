@@ -1,0 +1,5 @@
+# Smart Parking Management System - OS Simulation Platform
+# Core simulation & web dashboard uses Python Standard Library (zero mandatory external dependencies).
+# Optional visualization & report generation:
+matplotlib>=3.7.0
+numpy>=1.24.0

@@ -1,0 +1,6 @@
+module,mechanism,threads_tested,mutual_exclusion_preserved,data_race_collision,status,observation
+Critical Section,None (Unsynchronized),2,False,True,VULNERABLE TO RACE CONDITION,"Both threads read slot as FREE concurrently, resulting in double allocation collision."
+Critical Section,Mutex Lock (threading.Lock),2,True,False,MUTUAL EXCLUSION GUARANTEED,Thread B blocked at gate until Thread A completed atomic acquisition and released mutex.
+Peterson's Algorithm,Software Busy-Wait Flags & Turn Variable,2,True,False,FORMAL PROOF VERIFIED,"Flag[0]=True, Flag[1]=True, Turn variable arbitrated mutual exclusion, progress, and bounded waiting."
+Hardware TSL,Atomic Test-and-Set Instruction,2,True,False,HARDWARE ATOMICITY VERIFIED,TSL atomic read-modify-write prevents preemption between test and lock assertion.
+Counting Semaphore,Counting Semaphore (S.wait() / S.signal()),18,True,False,CAPACITY & SLEEP QUEUE VERIFIED,16 slots safely granted; exactly 2 overflow threads queued in sleep queue.

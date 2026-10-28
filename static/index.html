@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS-PARK // Commercial Parking Management Platform</title>
+  
+  <!-- Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Local Libraries: Three.js & OrbitControls -->
+  <script src="js/libs/three.min.js"></script>
+  <script src="js/libs/OrbitControls.js"></script>
+</head>
+<body>
+
+  <!-- TOP COMMERCIAL HEADER -->
+  <header class="system-header">
+    <div class="header-inner">
+      
+      <!-- Brand & Facility Name -->
+      <div class="brand-wrapper">
+        <div class="brand-hex-badge">🅿️</div>
+        <div class="brand-text">
+          <h1>
+            NEXUS-PARK
+            <span class="facility-badge">COMMERCIAL SUITE</span>
+          </h1>
+          <p id="header-facility-subtitle">Metro Central Facility · Terminal Deck A · Sector 62</p>
+        </div>
+      </div>
+
+      <!-- Facility Switcher & Live Clock -->
+      <div class="header-meta-group">
+        <select class="facility-dropdown" id="facility-select">
+          <option value="FAC-01" selected>Metro Central Hub — Terminal Deck A (16 Bays)</option>
+          <option value="FAC-02">Metro Central Hub — Terminal Deck B (Simulated)</option>
+          <option value="FAC-03">Hospital Wing Express Deck (Simulated)</option>
+        </select>
+
+        <div class="clock-display">
+          <span class="pulse-dot"></span>
+          <span id="live-server-clock">Connecting to facility...</span>
+        </div>
+      </div>
+
+      <!-- Operator Profile & OS Lab Gateway -->
+      <div style="display: flex; align-items: center; gap: 10px;">
+        
+        <div class="operator-profile-badge">
+          <div class="operator-avatar">IR</div>
+          <div class="operator-info">
+            <span class="operator-name">Ishank Rana</span>
+            <span class="operator-role">Lead Attendant (Admin)</span>
+          </div>
+        </div>
+
+        <button class="btn btn-outline btn-icon" id="sound-toggle-btn" title="Toggle Sound FX">🔊</button>
+
+        <!-- Academic OS Lab Button -->
+        <button class="btn-academic-os-lab" id="btn-open-os-lab">
+          <span>🎓</span>
+          <span>OS Academic Lab (College Demo)</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- COMMERCIAL NAVIGATION TABS (8 CORE MODULES) -->
+  <nav class="tabs-nav-bar">
+    <div class="tabs-nav-container">
+      <button class="tab-btn active" data-tab="overview">
+        <span>📊 Overview</span>
+      </button>
+      <button class="tab-btn" data-tab="live-parking">
+        <span>🅿️ Live Parking (3D Map)</span>
+      </button>
+      <button class="tab-btn" data-tab="vehicles">
+        <span>🚘 Vehicles &amp; Sessions</span>
+      </button>
+      <button class="tab-btn" data-tab="entry-exit">
+        <span>🎫 Entry &amp; Exit Kiosk</span>
+      </button>
+      <button class="tab-btn" data-tab="reservations">
+        <span>📅 Reservations</span>
+      </button>
+      <button class="tab-btn" data-tab="payments">
+        <span>💳 Payments &amp; Pricing</span>
+      </button>
+      <button class="tab-btn" data-tab="reports">
+        <span>📈 Reports &amp; Analytics</span>
+      </button>
+      <button class="tab-btn" data-tab="settings">
+        <span>⚙️ Facility Settings</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN OPERATIONAL VIEWPORT -->
+  <main class="main-wrapper">
+
+    <!-- =========================================================================
+         TAB 1: COMMERCIAL OVERVIEW
+         ========================================================================= -->
+    <section class="tab-panel active" id="tab-overview">
+      
+      <!-- Dominant Commercial KPI Ribbon -->
+      <div class="kpi-ribbon">
+        
+        <div class="kpi-card" style="--card-accent: var(--color-lime);">
+          <div class="kpi-header">
+            <span class="kpi-title">AVAILABLE SPACES</span>
+            <span class="kpi-icon">🟢</span>
+          </div>
+          <div class="kpi-val-row">
+            <span class="kpi-val-big" id="ov-avail-spaces" style="color: var(--color-lime);">16</span>
+            <span class="kpi-val-sub">/ <span id="ov-total-cap">16</span> Total</span>
+          </div>
+          <div class="kpi-progress-track">
+            <div class="kpi-progress-bar" id="ov-avail-bar" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="--card-accent: var(--color-cyan);">
+          <div class="kpi-header">
+            <span class="kpi-title">CURRENT OCCUPANCY</span>
+            <span class="kpi-icon">🚘</span>
+          </div>
+          <div class="kpi-val-row">
+            <span class="kpi-val-big" id="ov-occupancy-pct" style="color: var(--color-cyan);">0.0%</span>
+            <span class="kpi-val-sub"><span id="ov-occupied-count">0</span> Active Vehicles</span>
+          </div>
+          <div class="kpi-progress-track">
+            <div class="kpi-progress-bar" id="ov-occ-bar" style="width: 0%; background: var(--color-cyan);"></div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="--card-accent: var(--color-indigo);">
+          <div class="kpi-header">
+            <span class="kpi-title">TODAY'S VEHICLE INGRESS / EGRESS</span>
+            <span class="kpi-icon">🏎️</span>
+          </div>
+          <div class="kpi-val-row">
+            <span class="kpi-val-big" id="ov-entries-today" style="color: #a5b4fc;">0</span>
+            <span class="kpi-val-sub">In &nbsp;|&nbsp; <strong id="ov-exits-today" style="color: #fff;">0</strong> Out</span>
+          </div>
+          <div class="kpi-progress-track">
+            <div class="kpi-progress-bar" style="width: 100%; background: var(--color-indigo);"></div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="--card-accent: var(--color-amber);">
+          <div class="kpi-header">
+            <span class="kpi-title">REVENUE COLLECTED TODAY</span>
+            <span class="kpi-icon">💰</span>
+          </div>
+          <div class="kpi-val-row">
+            <span class="kpi-val-big" id="ov-revenue-today" style="color: var(--color-amber);">₹0.00</span>
+            <span class="kpi-val-sub"><span id="ov-txns-count">0</span> Transactions</span>
+          </div>
+          <div class="kpi-progress-track">
+            <div class="kpi-progress-bar" style="width: 100%; background: var(--color-amber);"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Facility Quick Status & Action Center -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+        
+        <!-- Left: Quick Actions & Space Category Breakdown -->
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          
+          <!-- Quick Operator Action Bar -->
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">⚡ Quick Operational Actions</div>
+              <span style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);">TERMINAL READY</span>
+            </div>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-primary" id="btn-quick-entry">+ Process Vehicle Entry</button>
+              <button class="btn btn-cyan" id="btn-quick-exit">🚪 Process Vehicle Exit</button>
+              <button class="btn btn-amber" id="btn-quick-reserve">📅 New Reservation</button>
+              <button class="btn btn-outline" id="btn-quick-surge">⚡ Simulate Traffic Surge</button>
+            </div>
+          </div>
+
+          <!-- Capacity by Space Category -->
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">🅿️ Space Allocation by Category</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+              <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
+                <div style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">Compact &amp; Sedan</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-pure); margin-top: 4px;">8 Bays</div>
+                <div style="font-size: 0.68rem; color: var(--color-lime); margin-top: 2px;">S01–S08 · ₹30/hr</div>
+              </div>
+
+              <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
+                <div style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">EV Hypercharging</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: var(--color-cyan); margin-top: 4px;">4 Bays</div>
+                <div style="font-size: 0.68rem; color: var(--color-cyan); margin-top: 2px;">S09–S12 · ₹40/hr</div>
+              </div>
+
+              <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
+                <div style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">Heavy Vehicle / SUV</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-pure); margin-top: 4px;">2 Bays</div>
+                <div style="font-size: 0.68rem; color: var(--color-amber); margin-top: 2px;">S13–S14 · ₹35/hr</div>
+              </div>
+
+              <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
+                <div style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase;">Valet / Emergency</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: #f43f5e; margin-top: 4px;">2 Bays</div>
+                <div style="font-size: 0.68rem; color: #fda4af; margin-top: 2px;">S15–S16 · Priority</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Recent Operational Activity & Live Alerts -->
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">🔔 Operational Activity Feed</div>
+              <span style="font-size: 0.68rem; color: var(--color-lime); font-family: var(--font-mono);">LIVE LOGS</span>
+            </div>
+            <div id="overview-activity-feed" style="max-height: 290px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 2: LIVE PARKING (3D MAP & 2D SCHEMATIC)
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-live-parking">
+      
+      <div class="card-panel">
+        
+        <!-- Controls & Filters Bar -->
+        <div class="live-map-controls-bar">
+          <div class="filter-pills-group" id="space-filter-pills">
+            <button class="filter-pill active" data-filter="ALL">All Spaces (16)</button>
+            <button class="filter-pill" data-filter="AVAILABLE">🟢 Available (<span id="pill-avail-count">0</span>)</button>
+            <button class="filter-pill" data-filter="OCCUPIED">🔵 Occupied (<span id="pill-occ-count">0</span>)</button>
+            <button class="filter-pill" data-filter="RESERVED">🟡 Reserved (<span id="pill-res-count">0</span>)</button>
+            <button class="filter-pill" data-filter="MAINTENANCE">🔴 Out of Service (<span id="pill-maint-count">0</span>)</button>
+          </div>
+
+          <!-- Search & Presets -->
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="text" id="map-search-input" class="form-input" placeholder="🔍 Search Space ID / Plate..." style="width: 180px; padding: 5px 10px; font-size: 0.75rem;">
+            
+            <!-- 3D vs 2D Toggle -->
+            <div style="display: flex; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); padding: 2px; border-radius: var(--radius-sm);">
+              <button class="btn btn-outline" id="btn-toggle-3d" style="padding: 4px 10px; font-size: 0.72rem; border: none; background: var(--color-lime); color: #000;">3D Map</button>
+              <button class="btn btn-outline" id="btn-toggle-schematic" style="padding: 4px 10px; font-size: 0.72rem; border: none;">2D Plan</button>
+            </div>
+
+            <div style="display: flex; gap: 4px;" id="cam-presets-group">
+              <button class="btn btn-outline btn-icon" id="btn-3d-cam-iso" title="Isometric 3D" style="width: 28px; height: 28px; font-size: 0.75rem;">📐</button>
+              <button class="btn btn-outline btn-icon" id="btn-3d-cam-top" title="Top-Down Plan" style="width: 28px; height: 28px; font-size: 0.75rem;">🔝</button>
+              <button class="btn btn-outline btn-icon" id="btn-3d-cam-gate" title="Gate Camera" style="width: 28px; height: 28px; font-size: 0.75rem;">🚪</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D WebGL Canvas Viewport -->
+        <div class="three-viewport-container" id="three-parking-viewport">
+          <div class="three-hud-overlay">
+            <div class="hud-pill">
+              <span class="pulse-dot"></span> Interactive 3D Facility Map Active
+            </div>
+            <div class="hud-pill" style="color: var(--color-cyan);">
+              Click any space to view vehicle details, duration &amp; actions
+            </div>
+          </div>
+          <div class="hud-tooltip" id="three-hud-tooltip"></div>
+        </div>
+
+        <!-- 2D Architectural Schematic Viewport (Fallback & Plan View) -->
+        <div id="schematic-viewport" style="display: none; margin-top: 14px;">
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 8px;">ROW A: COMPACT &amp; SEDAN SPACES (S01–S08)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;" id="schematic-row-a"></div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 8px;">ROW B: EV HYPERCHARGING STATIONS (S09–S12)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;" id="schematic-row-b"></div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 8px;">ROW C: HEAVY SUV &amp; TRUCK SPACES (S13–S14)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;" id="schematic-row-c"></div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 8px;">ROW D: PRIORITY VALET &amp; EMERGENCY EXPRESS (S15–S16)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px;" id="schematic-row-d"></div>
+          </div>
+        </div>
+
+        <!-- Space State Legend -->
+        <div class="map-legend-bar">
+          <span style="font-weight: 700; color: #fff;">Legend:</span>
+          <div class="legend-item"><div class="legend-dot dot-avail"></div><span>Available</span></div>
+          <div class="legend-item"><div class="legend-dot dot-occ"></div><span>Occupied</span></div>
+          <div class="legend-item"><div class="legend-dot dot-res"></div><span>Reserved</span></div>
+          <div class="legend-item"><div class="legend-dot dot-maint"></div><span>Out of Service</span></div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 3: VEHICLES & PARKING SESSIONS
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-vehicles">
+      
+      <div class="card-panel">
+        
+        <div class="card-panel-header">
+          <div>
+            <div class="card-panel-title">🚘 Vehicle Registry &amp; Parking Sessions</div>
+            <div class="card-panel-subtitle">Monitor live vehicles parked in the facility and review completed session history</div>
+          </div>
+          
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="vehicles-search-input" class="form-input" placeholder="🔍 Filter by Plate Number..." style="width: 220px;">
+            <button class="btn btn-primary" id="btn-vehicles-entry-modal">+ Ingest Vehicle</button>
+          </div>
+        </div>
+
+        <!-- Sub Tabs: Active vs History -->
+        <div style="display: flex; gap: 8px; margin-bottom: 14px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+          <button class="btn btn-outline active" id="btn-sub-active-vehicles" style="border: none; background: rgba(16, 231, 97, 0.12); color: var(--color-lime);">
+            🟢 Active Parked Vehicles (<span id="vehicles-active-count">0</span>)
+          </button>
+          <button class="btn btn-outline" id="btn-sub-history-vehicles" style="border: none;">
+            🏁 Session History (<span id="vehicles-history-count">0</span>)
+          </button>
+        </div>
+
+        <!-- Active Vehicles Table -->
+        <div class="data-table-container" id="container-active-vehicles">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Registration Plate</th>
+                <th>Category</th>
+                <th>Space Assigned</th>
+                <th>Entry Time</th>
+                <th>Elapsed Duration</th>
+                <th>Estimated Fee</th>
+                <th>Payment Mode</th>
+                <th>Operator Action</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-active-vehicles"></tbody>
+          </table>
+        </div>
+
+        <!-- History Sessions Table -->
+        <div class="data-table-container" id="container-history-vehicles" style="display: none;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Session ID</th>
+                <th>Registration Plate</th>
+                <th>Category</th>
+                <th>Space Used</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Total Duration</th>
+                <th>Fee Paid</th>
+                <th>Payment Status</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-history-vehicles"></tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 4: ENTRY & EXIT ATTENDANT KIOSK
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-entry-exit">
+      
+      <div class="kiosk-split-grid">
+        
+        <!-- Left: Ingress Terminal (Vehicle Entry) -->
+        <div class="kiosk-terminal-card">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+              <div>
+                <h2 style="font-size: 1.1rem; color: #fff; font-weight: 800;">INGRESS TERMINAL // GATE 1</h2>
+                <p style="font-size: 0.72rem; color: var(--text-dim);">Fast Vehicle Check-In &amp; Bay Assignment</p>
+              </div>
+              <span class="terminal-badge badge-ingress">GATE BARRIER ACTIVE</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">License Plate Number</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="kiosk-in-plate" class="form-input" placeholder="e.g. DL-01-AB1234" style="text-transform: uppercase; font-family: var(--font-mono); font-size: 1rem; font-weight: 700;">
+                <button class="btn btn-outline" id="btn-kiosk-random-plate" type="button">🎲 Random</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Vehicle Category</label>
+              <select class="form-select" id="kiosk-in-type" style="width: 100%;">
+                <option value="STANDARD">STANDARD CAR (Sedan / Hatchback — ₹30/hr)</option>
+                <option value="EV">ELECTRIC VEHICLE (Requires 22kW Bay — ₹40/hr)</option>
+                <option value="SUV">HEAVY VEHICLE / SUV (Heavy Bay — ₹35/hr)</option>
+                <option value="EMERGENCY">EMERGENCY FIRST-RESPONDER (Priority Exempt — ₹0/hr)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Bay Allocation Mode</label>
+              <select class="form-select" id="kiosk-in-slot-select" style="width: 100%;">
+                <option value="">⚡ Automatic Optimal Bay Assignment</option>
+                <!-- Dynamically populated free slots -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Expected Duration &amp; Payment Channel</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <select class="form-select" id="kiosk-in-duration">
+                  <option value="15">15 Minutes</option>
+                  <option value="30">30 Minutes</option>
+                  <option value="60" selected>1 Hour</option>
+                  <option value="120">2 Hours</option>
+                  <option value="240">4 Hours</option>
+                </select>
+                <select class="form-select" id="kiosk-in-payment">
+                  <option value="FASTTAG">FastTag Auto-Scan</option>
+                  <option value="CARD">Credit / Debit Card</option>
+                  <option value="CASH">Cash Ticket</option>
+                  <option value="UPI">UPI / Digital QR</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="btn-kiosk-submit-entry" style="width: 100%; padding: 12px; font-size: 0.9rem; margin-top: 14px;">
+            🎫 Issue Entry Ticket &amp; Open Gate
+          </button>
+        </div>
+
+        <!-- Right: Egress Terminal (Vehicle Exit & Payment) -->
+        <div class="kiosk-terminal-card">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+              <div>
+                <h2 style="font-size: 1.1rem; color: #fff; font-weight: 800;">EGRESS TERMINAL // GATE 2</h2>
+                <p style="font-size: 0.72rem; color: var(--text-dim);">Fast Vehicle Departure, Billing &amp; Space Release</p>
+              </div>
+              <span class="terminal-badge badge-egress">SETTLEMENT READY</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Select Departed Space or Active Vehicle</label>
+              <select class="form-select" id="kiosk-out-vehicle-select" style="width: 100%;">
+                <option value="">-- Choose Occupied Space to Release --</option>
+              </select>
+            </div>
+
+            <!-- Itemized Receipt Slip -->
+            <div class="receipt-slip" id="kiosk-bill-preview">
+              <div class="receipt-row">
+                <span>Facility:</span>
+                <strong style="color: #fff;">NEXUS-PARK Metro Central</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Vehicle Plate:</span>
+                <span id="bill-plate" style="color: var(--color-cyan); font-weight: 700;">---</span>
+              </div>
+              <div class="receipt-row">
+                <span>Assigned Space:</span>
+                <span id="bill-space">---</span>
+              </div>
+              <div class="receipt-row">
+                <span>Duration Parked:</span>
+                <span id="bill-duration">---</span>
+              </div>
+              <div class="receipt-row">
+                <span>Applicable Rate:</span>
+                <span id="bill-rate">---</span>
+              </div>
+              <div style="border-top: 1px dashed var(--border-subtle); margin: 8px 0; padding-top: 8px;" class="receipt-row">
+                <span style="font-weight: 800; font-size: 0.95rem; color: #fff;">TOTAL FEE DUE:</span>
+                <span id="bill-amount" style="font-size: 1.15rem; font-weight: 800; color: var(--color-lime);">₹0.00</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Settlement Payment Method</label>
+              <select class="form-select" id="kiosk-out-payment-method" style="width: 100%;">
+                <option value="FASTTAG">FastTag Electronic Toll</option>
+                <option value="UPI">UPI / Digital QR Scan</option>
+                <option value="CARD">Card POS Terminal</option>
+                <option value="CASH">Cash Settlement</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-cyan" id="btn-kiosk-submit-exit" style="width: 100%; padding: 12px; font-size: 0.9rem; margin-top: 14px;">
+            💳 Settle Payment, Release Space &amp; Print Receipt
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 5: RESERVATIONS
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-reservations">
+      
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div>
+            <div class="card-panel-title">📅 Advance Space Reservations</div>
+            <div class="card-panel-subtitle">Manage customer bookings, guarantee bay availability, and prevent reservation conflicts</div>
+          </div>
+          <button class="btn btn-primary" id="btn-open-res-modal">+ New Advance Reservation</button>
+        </div>
+
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer Name</th>
+                <th>Contact</th>
+                <th>Plate Number</th>
+                <th>Category</th>
+                <th>Held Bay</th>
+                <th>Scheduled Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-reservations"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 6: PAYMENTS & PRICING
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-payments">
+      
+      <!-- Pricing Configuration Card -->
+      <div class="card-panel" style="margin-bottom: 22px;">
+        <div class="card-panel-header">
+          <div>
+            <div class="card-panel-title">⚙️ Facility Tariff &amp; Pricing Rules</div>
+            <div class="card-panel-subtitle">Configure hourly parking rates, vehicle tier surcharges, and grace periods</div>
+          </div>
+          <button class="btn btn-primary" id="btn-save-pricing">💾 Save Tariff Rules</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+          <div>
+            <label class="form-label">Base Hourly Rate (Compact)</label>
+            <input type="number" id="price-base-rate" class="form-input" value="30">
+          </div>
+          <div>
+            <label class="form-label">EV Hypercharging Rate</label>
+            <input type="number" id="price-ev-rate" class="form-input" value="40">
+          </div>
+          <div>
+            <label class="form-label">SUV / Heavy Vehicle Rate</label>
+            <input type="number" id="price-suv-rate" class="form-input" value="35">
+          </div>
+          <div>
+            <label class="form-label">Grace Period (Minutes Free)</label>
+            <input type="number" id="price-grace-min" class="form-input" value="15">
+          </div>
+          <div>
+            <label class="form-label">Daily Maximum Cap (24h)</label>
+            <input type="number" id="price-daily-max" class="form-input" value="350">
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Transactions Audit Log -->
+      <div class="card-panel">
+        <div class="card-panel-header">
+          <div>
+            <div class="card-panel-title">💳 Payment Transactions Ledger</div>
+            <div class="card-panel-subtitle">Immutable record of settled fees, receipts, and electronic payment transactions</div>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--color-lime); font-family: var(--font-mono);">AUDIT COMPLIANT</span>
+        </div>
+
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Receipt #</th>
+                <th>License Plate</th>
+                <th>Amount Paid</th>
+                <th>Method</th>
+                <th>Timestamp</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-payments"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 7: REPORTS & ANALYTICS
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-reports">
+      
+      <div class="card-panel" style="margin-bottom: 22px;">
+        <div class="card-panel-header">
+          <div>
+            <div class="card-panel-title">📈 Facility Operational Analytics &amp; Audit</div>
+            <div class="card-panel-subtitle">Comprehensive performance metrics, revenue analysis, and occupancy distributions</div>
+          </div>
+          <button class="btn btn-cyan" id="btn-export-csv">📥 Export Operational Audit (CSV)</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+          
+          <!-- Duration Breakdown -->
+          <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 16px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 12px;">Parking Duration Distribution</div>
+            
+            <div style="margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px;">
+                <span>Short Stay (&lt; 30 mins)</span>
+                <strong id="rep-dur-under30" style="color: var(--color-lime);">0 sessions</strong>
+              </div>
+              <div class="kpi-progress-track"><div class="kpi-progress-bar" id="rep-bar-under30" style="width: 40%; background: var(--color-lime);"></div></div>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px;">
+                <span>Medium Stay (30–60 mins)</span>
+                <strong id="rep-dur-30to60" style="color: var(--color-cyan);">0 sessions</strong>
+              </div>
+              <div class="kpi-progress-track"><div class="kpi-progress-bar" id="rep-bar-30to60" style="width: 40%; background: var(--color-cyan);"></div></div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 4px;">
+                <span>Extended Stay (&gt; 60 mins)</span>
+                <strong id="rep-dur-over60" style="color: var(--color-amber);">0 sessions</strong>
+              </div>
+              <div class="kpi-progress-track"><div class="kpi-progress-bar" id="rep-bar-over60" style="width: 20%; background: var(--color-amber);"></div></div>
+            </div>
+          </div>
+
+          <!-- Payment Channel Breakdown -->
+          <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 16px; border-radius: var(--radius-md);">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #fff; margin-bottom: 12px;">Revenue by Channel</div>
+            <div id="rep-payment-channels" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.75rem;"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         TAB 8: FACILITY SETTINGS
+         ========================================================================= -->
+    <section class="tab-panel" id="tab-settings">
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">🏢 Facility Profile &amp; Capacity</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.8rem;">
+            <div>
+              <label class="form-label">Facility Name</label>
+              <input type="text" class="form-input" value="NEXUS-PARK // Metro Central Hub" readonly>
+            </div>
+            <div>
+              <label class="form-label">Facility Address</label>
+              <input type="text" class="form-input" value="Terminal Deck A, Sector 62, Commercial Corridor" readonly>
+            </div>
+            <div>
+              <label class="form-label">Hardware Sensor Integration</label>
+              <input type="text" class="form-input" value="16 Ultrasonics Bays + 2 RFID FastTag Gate Barricades" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="card-panel-header">
+            <div class="card-panel-title">🛡️ System Architecture &amp; Production Roadmap</div>
+          </div>
+
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.6;">
+            <p style="margin-bottom: 10px;">
+              <strong style="color: #fff;">Interactive Demonstration Notice:</strong> The current environment runs the real-time Python simulation engine in local memory, perfectly suited for interactive demonstrations, presentations, and academic defense.
+            </p>
+            <p style="margin-bottom: 10px;">
+              <strong style="color: var(--color-cyan);">Production SaaS Roadmap:</strong>
+              To transition this platform into a multi-tenant commercial deployment for multiple mall/hospital clients, the architecture calls for:
+            </p>
+            <ul style="padding-left: 20px; margin-bottom: 10px;">
+              <li>PostgreSQL / TimescaleDB for persistent vehicle telemetry and sensor logs.</li>
+              <li>JWT Authentication with Role-Based Access Control (Admin, Manager, Attendant).</li>
+              <li>Razorpay / Stripe Webhooks for real card &amp; UPI payment gateway processing.</li>
+              <li>MQTT / WebSocket broker for physical ultrasonic hardware sensors and camera ANPR plate readers.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       MODAL: SPACE DETAIL & OPERATIONS DRAWER (3D & 2D Map Selection)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="space-detail-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div class="card-panel-title" id="space-modal-title">🅿️ Space Details: S01</div>
+          <div class="card-panel-subtitle" id="space-modal-subtitle">Bay Classification: Compact Standard</div>
+        </div>
+        <button class="btn btn-outline btn-icon" id="close-space-modal" style="width: 28px; height: 28px;">✕</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm);">
+            <div style="font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase;">Current Space Status</div>
+            <div id="space-modal-status-badge" style="font-size: 1rem; font-weight: 800; color: var(--color-lime); margin-top: 2px;">AVAILABLE</div>
+          </div>
+          <div style="background: rgba(14, 19, 31, 0.8); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm);">
+            <div style="font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase;">Current Vehicle</div>
+            <div id="space-modal-plate" style="font-size: 1rem; font-weight: 800; color: var(--color-cyan); margin-top: 2px;">[ None ]</div>
+          </div>
+        </div>
+
+        <div class="receipt-slip" id="space-modal-metrics">
+          <div class="receipt-row"><span>Bay Number:</span><strong id="space-modal-bayno">Bay #1</strong></div>
+          <div class="receipt-row"><span>Total Vehicles Served Today:</span><span id="space-modal-served">0</span></div>
+          <div class="receipt-row"><span>Time Parked:</span><span id="space-modal-parked-time">---</span></div>
+          <div class="receipt-row"><span>Accrued Parking Fee:</span><strong id="space-modal-accrued-fee" style="color: var(--color-lime);">₹0.00</strong></div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-space-close">Close</button>
+        <button class="btn btn-amber" id="btn-space-toggle-maint">Toggle Maintenance</button>
+        <button class="btn btn-rose" id="btn-space-release-action" style="display: none;">🚪 Process Exit &amp; Settle</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: CREATE NEW ADVANCE RESERVATION
+       ========================================================================= -->
+  <div class="modal-backdrop" id="new-reservation-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="card-panel-title">📅 New Advance Bay Reservation</div>
+        <button class="btn btn-outline btn-icon" id="close-res-modal" style="width: 28px; height: 28px;">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Customer Full Name</label>
+          <input type="text" id="res-cust-name" class="form-input" placeholder="e.g. Vikram Singhania">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="text" id="res-cust-phone" class="form-input" placeholder="+91 98000 00000">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Vehicle Registration Plate</label>
+          <input type="text" id="res-plate" class="form-input" placeholder="e.g. DL-01-VIP777" style="text-transform: uppercase;">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Vehicle Category</label>
+            <select class="form-select" id="res-vtype" style="width: 100%;">
+              <option value="STANDARD">STANDARD</option>
+              <option value="EV">EV CHARGING</option>
+              <option value="SUV">HEAVY SUV</option>
+              <option value="EMERGENCY">VALET / VIP</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Desired Parking Space</label>
+            <select class="form-select" id="res-slot-id" style="width: 100%;">
+              <!-- Available slots -->
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Scheduled Arrival</label>
+            <input type="text" id="res-time-str" class="form-input" value="Today 16:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duration (Hours)</label>
+            <input type="number" id="res-duration" class="form-input" value="2.0" min="0.5" max="24" step="0.5">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Notes / Instructions</label>
+          <input type="text" id="res-notes" class="form-input" placeholder="e.g. VIP Board Conference Parking">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-cancel-res">Cancel</button>
+        <button class="btn btn-primary" id="btn-submit-res">Confirm &amp; Hold Space</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: ITEMISED PAYMENT RECEIPT MODAL
+       ========================================================================= -->
+  <div class="modal-backdrop" id="receipt-modal">
+    <div class="modal-window" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="card-panel-title">🧾 Commercial Parking Receipt</div>
+        <button class="btn btn-outline btn-icon" id="close-receipt-modal" style="width: 28px; height: 28px;">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="receipt-slip" id="print-receipt-content">
+          <div style="text-align: center; border-bottom: 1px dashed var(--border-medium); padding-bottom: 8px; margin-bottom: 10px;">
+            <strong style="font-size: 1rem; color: #fff;">NEXUS-PARK MANAGEMENT</strong>
+            <div style="font-size: 0.7rem; color: var(--text-dim);">Metro Central Facility · Terminal Deck A</div>
+          </div>
+          <div class="receipt-row"><span>Receipt No:</span><strong id="rcp-no">RCP-000000</strong></div>
+          <div class="receipt-row"><span>Transaction ID:</span><span id="rcp-txn">TXN-0000</span></div>
+          <div class="receipt-row"><span>Registration Plate:</span><strong id="rcp-plate" style="color: var(--color-cyan);">---</strong></div>
+          <div class="receipt-row"><span>Space Released:</span><span id="rcp-space">---</span></div>
+          <div class="receipt-row"><span>Billable Duration:</span><span id="rcp-duration">0 min</span></div>
+          <div class="receipt-row"><span>Payment Channel:</span><span id="rcp-channel">FASTTAG</span></div>
+          <div style="border-top: 1px dashed var(--border-medium); margin: 8px 0; padding-top: 8px;" class="receipt-row">
+            <strong style="color: #fff; font-size: 0.95rem;">TOTAL PAID:</strong>
+            <strong id="rcp-amount" style="color: var(--color-lime); font-size: 1.15rem;">₹0.00</strong>
+          </div>
+          <div style="text-align: center; margin-top: 10px; font-size: 0.68rem; color: var(--text-dim);">
+            Thank you for parking with NEXUS-PARK! Barrier clearance granted.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-dismiss-receipt">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       ACADEMIC OS LAB / COLLEGE DEMONSTRATION MODAL OVERLAY
+       (Preserved for University Evaluation & Viva!)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="os-lab-modal">
+    <div class="modal-window os-lab-window">
+      
+      <!-- OS Lab Header -->
+      <div class="modal-header" style="background: rgba(14, 19, 31, 0.95);">
+        <div>
+          <div class="card-panel-title" style="color: #a5b4fc;">🎓 Operating Systems Academic Demonstration Lab</div>
+          <div class="card-panel-subtitle">Course: CCSE0303A (Unit 2 &amp; Unit 3) · Department of CSE-AI · Group 7 · NIET Greater Noida</div>
+        </div>
+        <button class="btn btn-outline btn-icon" id="close-os-lab-modal" style="width: 30px; height: 30px;">✕</button>
+      </div>
+
+      <!-- OS Lab Sub-Navigation Tabs -->
+      <div class="os-lab-tabs-bar">
+        <button class="os-lab-tab-btn active" data-ostab="cpu-scheduling">⏱️ CPU Scheduling &amp; Gantt</button>
+        <button class="os-lab-tab-btn" data-ostab="concurrency-lab">🔒 Concurrency &amp; Mutex Lab</button>
+        <button class="os-lab-tab-btn" data-ostab="bankers-deadlock">🏦 Banker's &amp; Deadlock Studio</button>
+        <button class="os-lab-tab-btn" data-ostab="classical-sync">🔄 Classical Synchronization</button>
+        <button class="os-lab-tab-btn" data-ostab="academic-report">📘 Syllabus Mapping &amp; Team</button>
+      </div>
+
+      <!-- OS Lab Sub-Panels -->
+      <div class="os-lab-content">
+        
+        <!-- OS Sub-Panel 1: CPU Scheduling -->
+        <div class="os-lab-panel active" id="ostab-cpu-scheduling">
+          <div class="scheduler-controls-bar" style="margin-bottom: 16px;">
+            <div>
+              <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px;">Select CPU Dispatch Policy</div>
+              <div class="algo-pill-group">
+                <div class="algo-pill active" data-algo="FCFS">FCFS</div>
+                <div class="algo-pill" data-algo="SJF">SJF (NP)</div>
+                <div class="algo-pill" data-algo="SRTF">SRTF (P)</div>
+                <div class="algo-pill" data-algo="PRIORITY_NP">Priority (NP)</div>
+                <div class="algo-pill" data-algo="PRIORITY_P">Priority (P)</div>
+                <div class="algo-pill" data-algo="ROUND_ROBIN">Round Robin</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">
+                  <span>RR Quantum:</span>
+                  <strong id="rr-quantum-val" style="color: var(--color-cyan);">2.0 min</strong>
+                </div>
+                <input type="range" id="rr-quantum-slider" min="1" max="15" step="1" value="2" style="width: 140px;">
+              </div>
+              <button class="btn btn-primary" id="run-benchmark-btn">⚡ Run 6-Algorithm Benchmark</button>
+            </div>
+          </div>
+
+          <div class="gantt-chart-viewport" style="margin-bottom: 16px;">
+            <div class="gantt-timeline-track" id="gantt-timeline-track"></div>
+            <div class="gantt-time-labels" id="gantt-time-labels"></div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
+            <div class="kpi-card"><div class="kpi-title">Average Wait (AWT)</div><div class="kpi-val-big" id="metric-avg-wt" style="color: var(--color-amber);">0.0 min</div></div>
+            <div class="kpi-card"><div class="kpi-title">Average TAT (ATAT)</div><div class="kpi-val-big" id="metric-avg-tat" style="color: var(--color-lime);">0.0 min</div></div>
+            <div class="kpi-card"><div class="kpi-title">CPU Utilization</div><div class="kpi-val-big" id="metric-cpu-util" style="color: var(--color-cyan);">100%</div></div>
+            <div class="kpi-card"><div class="kpi-title">Throughput</div><div class="kpi-val-big" id="metric-throughput" style="color: #a5b4fc;">0.0</div></div>
+          </div>
+
+          <div class="card-panel">
+            <div class="card-panel-title" style="margin-bottom: 10px;">📋 Process Execution Telemetry Table</div>
+            <div class="data-table-container">
+              <table class="data-table">
+                <thead><tr><th>PID</th><th>Plate</th><th>Priority</th><th>Arrival (AT)</th><th>Burst (BT)</th><th>Completion (CT)</th><th>Turnaround (TAT)</th><th>Waiting (WT)</th></tr></thead>
+                <tbody id="scheduler-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="benchmark-card-grid" id="benchmark-cards-container" style="margin-top: 16px;"></div>
+        </div>
+
+        <!-- OS Sub-Panel 2: Concurrency & Mutex -->
+        <div class="os-lab-panel" id="ostab-concurrency-lab" style="display: none;">
+          <div class="card-panel" style="margin-bottom: 16px;">
+            <div class="card-panel-header">
+              <div class="card-panel-title">💥 Race Condition vs. Mutex Lock</div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-outline active" id="btn-race-unsync" style="color: var(--color-rose);">Mode: Unsync (Race)</button>
+                <button class="btn btn-outline" id="btn-race-sync" style="color: var(--color-lime);">Mode: Mutex Protected</button>
+                <button class="btn btn-primary" id="btn-run-race-sim">⚡ Run Simulation</button>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 300px; gap: 16px;">
+              <div id="race-condition-trace-container" style="max-height: 200px; overflow-y: auto;"></div>
+              <div id="race-final-state-box" style="padding: 14px; border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm); text-align: center;">
+                <div>SLOT S05 STATE</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div class="card-panel">
+              <div class="card-panel-header">
+                <div class="card-panel-title">Peterson's Algorithm</div>
+                <button class="btn btn-cyan" id="btn-peterson-step">Step Through →</button>
+              </div>
+              <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <div style="flex: 1; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 4px; text-align: center;">FLAG[0]: <strong id="peterson-flag0" style="color: var(--color-lime);">False</strong></div>
+                <div style="flex: 1; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 4px; text-align: center;">FLAG[1]: <strong id="peterson-flag1" style="color: var(--color-amber);">False</strong></div>
+                <div style="flex: 1; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 4px; text-align: center;">TURN: <strong id="peterson-turn" style="color: var(--color-cyan);">0</strong></div>
+              </div>
+              <div id="peterson-step-log" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); padding: 10px; background: rgba(0,0,0,0.3); border-radius: 4px;"></div>
+            </div>
+
+            <div class="card-panel">
+              <div class="card-panel-header">
+                <div class="card-panel-title">Hardware Test-and-Set Lock (TSL)</div>
+                <button class="btn btn-outline" id="btn-tsl-trace">Trace TSL Cycles</button>
+              </div>
+              <div id="tsl-trace-log" style="max-height: 180px; overflow-y: auto;"></div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <div class="card-panel-title">Counting Semaphore (Capacity = 16)</div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-amber" id="btn-sem-wait">P(wait) Ingest</button>
+                <button class="btn btn-primary" id="btn-sem-signal">V(signal) Release</button>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.4); border-radius: 6px;">
+              <div>Semaphore Value: <strong id="semaphore-value-big" style="font-size: 1.8rem; color: var(--color-lime);">16</strong></div>
+              <div id="semaphore-blocked-threads" style="font-size: 0.78rem; color: var(--text-dim);">No threads blocked.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OS Sub-Panel 3: Banker's & Deadlock -->
+        <div class="os-lab-panel" id="ostab-bankers-deadlock" style="display: none;">
+          <div class="scheduler-controls-bar" style="margin-bottom: 16px;">
+            <div class="card-panel-title">Dijkstra's Banker's Algorithm (Deadlock Avoidance)</div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-primary" id="btn-run-bankers-safety">🛡️ Verify Safe Sequence</button>
+              <button class="btn btn-rose" id="btn-trigger-intersection-deadlock">⚠️ Trigger Roundabout Deadlock</button>
+              <button class="btn btn-outline" id="btn-resolve-intersection-deadlock">✅ Resolve via Preemption</button>
+            </div>
+          </div>
+          <div id="safe-sequence-badge-container" style="margin-bottom: 14px;"></div>
+          <div class="card-panel" style="margin-bottom: 14px;">
+            <div class="card-panel-title" style="margin-bottom: 8px;">Available Vector</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;" id="bankers-available-vector"></div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px;">
+            <div class="card-panel"><div class="card-panel-title">Allocation</div><div class="data-table-container"><table class="data-table"><thead><tr><th>Proc</th><th>C</th><th>EV</th><th>SUV</th><th>V</th></tr></thead><tbody id="bankers-allocation-tbody"></tbody></table></div></div>
+            <div class="card-panel"><div class="card-panel-title">Max Matrix</div><div class="data-table-container"><table class="data-table"><thead><tr><th>Proc</th><th>C</th><th>EV</th><th>SUV</th><th>V</th></tr></thead><tbody id="bankers-max-tbody"></tbody></table></div></div>
+            <div class="card-panel"><div class="card-panel-title">Need Matrix</div><div class="data-table-container"><table class="data-table"><thead><tr><th>Proc</th><th>C</th><th>EV</th><th>SUV</th><th>V</th></tr></thead><tbody id="bankers-need-tbody"></tbody></table></div></div>
+          </div>
+          <div class="card-panel"><div class="card-panel-title" style="margin-bottom: 8px;">Execution Trace</div><div id="bankers-trace-steps" style="max-height: 200px; overflow-y: auto;"></div></div>
+        </div>
+
+        <!-- OS Sub-Panel 4: Classical Synchronization -->
+        <div class="os-lab-panel" id="ostab-classical-sync" style="display: none;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="card-panel">
+              <div class="card-panel-title">Producer-Consumer (Buffer = 5)</div>
+              <div style="display: flex; gap: 8px; margin: 10px 0;"><button class="btn btn-primary" id="btn-pc-produce">+ Produce</button><button class="btn btn-outline" id="btn-pc-consume">- Consume</button></div>
+              <div id="pc-buffer-cells" style="display: flex; gap: 6px; margin-bottom: 8px;"></div>
+              <div id="pc-status-msg" style="font-size: 0.75rem; color: var(--text-dim);"></div>
+            </div>
+            <div class="card-panel">
+              <div class="card-panel-title">Reader-Writer Problem</div>
+              <div style="display: flex; gap: 6px; margin: 10px 0; flex-wrap: wrap;">
+                <button class="btn btn-cyan" id="btn-rw-read">Start Reader</button>
+                <button class="btn btn-outline" id="btn-rw-stop-read">Stop Reader</button>
+                <button class="btn btn-amber" id="btn-rw-write">Start Writer</button>
+                <button class="btn btn-outline" id="btn-rw-stop-write">Stop Writer</button>
+              </div>
+              <div id="rw-state-display" style="font-size: 0.75rem; color: var(--text-dim);"></div>
+            </div>
+            <div class="card-panel">
+              <div class="card-panel-title">Sleeping Barber (Gatekeeper)</div>
+              <div style="display: flex; gap: 8px; margin: 10px 0;"><button class="btn btn-primary" id="btn-barber-arrive">Car Arrives</button><button class="btn btn-outline" id="btn-barber-finish">Finish Service</button></div>
+              <div id="barber-state-display" style="font-size: 0.75rem; color: var(--text-dim);"></div>
+            </div>
+            <div class="card-panel">
+              <div class="card-panel-title">Dining Philosophers (Roundabout)</div>
+              <div style="display: flex; gap: 8px; margin: 10px 0;"><button class="btn btn-rose" id="btn-dp-deadlock">Trigger Deadlock</button><button class="btn btn-primary" id="btn-dp-resolve">Resolve</button></div>
+              <div id="dp-state-display" style="font-size: 0.75rem; color: var(--text-dim);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OS Sub-Panel 5: Academic Report & Team Group 7 Credits -->
+        <div class="os-lab-panel" id="ostab-academic-report" style="display: none;">
+          <div class="card-panel" style="margin-bottom: 16px;">
+            <div class="card-panel-title">Course &amp; Syllabus Alignment</div>
+            <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; margin-top: 8px;">
+              <strong>Course Code:</strong> CCSE0303A · Operating Systems<br>
+              <strong>Unit 2 Mapping:</strong> Process Management, Process Control Block (PCB), Process Lifecycle States, CPU Scheduling Algorithms (FCFS, SJF, SRTF, Priority Preemptive &amp; Non-Preemptive, Round Robin with dynamic time quantum).<br>
+              <strong>Unit 3 Mapping:</strong> Concurrency, Critical Sections, Mutex Locks, Race Conditions, Peterson's Software Algorithm, Hardware Test-and-Set Lock, Dijkstra Counting Semaphore, Deadlock Avoidance via Banker's Algorithm, Resource Allocation Graph (RAG) Cycle Detection, Classical Synchronization Problems.
+            </p>
+          </div>
+          <div class="card-panel">
+            <div class="card-panel-title">Team Group 7 (NIET Greater Noida, CSE-AI)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 10px; font-size: 0.75rem;">
+              <div style="background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px;"><strong>Ishank Rana</strong><br><span style="color: var(--text-dim);">Team Lead &amp; Architecture</span></div>
+              <div style="background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px;"><strong>Chhavi Attri</strong><br><span style="color: var(--text-dim);">Concurrency &amp; Mutex Engine</span></div>
+              <div style="background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px;"><strong>Aditi Singh</strong><br><span style="color: var(--text-dim);">Banker's Algorithm &amp; RAG</span></div>
+              <div style="background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px;"><strong>Pratyush Agrahari</strong><br><span style="color: var(--text-dim);">CPU Scheduling Engine</span></div>
+              <div style="background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px;"><strong>Samar Singh</strong><br><span style="color: var(--text-dim);">Frontend SaaS &amp; 3D Twin</span></div>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.72rem; color: var(--text-dim);">
+              <strong>Faculty Mentors:</strong> Mr. Amar Pal Yadav &amp; Dr. Varsha Jotwani
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST SYSTEM -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- APPLICATION SCRIPTS -->
+  <script src="js/three_parking.js"></script>
+  <script src="js/parking_lot.js"></script>
+  <script src="js/scheduler_viz.js"></script>
+  <script src="js/concurrency_viz.js"></script>
+  <script src="js/bankers_viz.js"></script>
+  <script src="js/classical_viz.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

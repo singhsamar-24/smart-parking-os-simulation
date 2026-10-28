@@ -1,0 +1,29 @@
+workload,process_count,algorithm,avg_waiting_time_sec,avg_turnaround_time_sec,avg_response_time_sec,cpu_utilization_pct,throughput_proc_per_sec,total_makespan_sec,context_switches,timeline_segments
+Workload 1 (Standard Mixed Traffic),5,FCFS,11.4,17.0,11.4,100.0,0.1786,28.0,4,5
+Workload 1 (Standard Mixed Traffic),5,SJF (Non-Preemptive),8.2,13.8,8.2,100.0,0.1786,28.0,4,5
+Workload 1 (Standard Mixed Traffic),5,SRTF (Preemptive),6.6,12.2,4.4,100.0,0.1786,28.0,5,6
+Workload 1 (Standard Mixed Traffic),5,Priority (Non-Preemptive),9.2,14.8,9.2,100.0,0.1786,28.0,4,5
+Workload 1 (Standard Mixed Traffic),5,Priority (Preemptive),8.2,13.8,6.4,100.0,0.1786,28.0,5,6
+Workload 1 (Standard Mixed Traffic),5,Round Robin (q=2),13.0,18.6,2.8,100.0,0.1786,28.0,13,14
+Workload 1 (Standard Mixed Traffic),5,Round Robin (q=4),13.0,18.6,6.0,100.0,0.1786,28.0,8,9
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,FCFS,12.0,16.0,12.0,100.0,0.25,24.0,5,6
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,SJF (Non-Preemptive),6.0,10.0,6.0,100.0,0.25,24.0,5,6
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,SRTF (Preemptive),6.0,10.0,6.0,100.0,0.25,24.0,5,6
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,Priority (Non-Preemptive),8.0,12.0,8.0,100.0,0.25,24.0,5,6
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,Priority (Preemptive),8.0,12.0,8.0,100.0,0.25,24.0,5,6
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,Round Robin (q=2),11.5,15.5,5.0,100.0,0.25,24.0,11,12
+Workload 2 (Peak Rush Hour - Simultaneous Arrivals),6,Round Robin (q=4),12.33,16.33,8.33,100.0,0.25,24.0,7,8
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,FCFS,15.0,21.25,15.0,100.0,0.16,25.0,3,4
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,SJF (Non-Preemptive),14.5,20.75,14.5,100.0,0.16,25.0,3,4
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,SRTF (Preemptive),1.75,8.0,0.5,100.0,0.16,25.0,4,5
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,Priority (Non-Preemptive),14.5,20.75,14.5,100.0,0.16,25.0,3,4
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,Priority (Preemptive),1.75,8.0,0.5,100.0,0.16,25.0,4,5
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,Round Robin (q=2),3.25,9.5,2.0,100.0,0.16,25.0,5,6
+Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars),4,Round Robin (q=4),4.25,10.5,3.0,100.0,0.16,25.0,4,5
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,FCFS,8.0,13.5,8.0,100.0,0.1818,22.0,3,4
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,SJF (Non-Preemptive),7.75,13.25,7.75,100.0,0.1818,22.0,3,4
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,SRTF (Preemptive),3.0,8.5,0.5,100.0,0.1818,22.0,4,5
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,Priority (Non-Preemptive),8.0,13.5,8.0,100.0,0.1818,22.0,3,4
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,Priority (Preemptive),3.0,8.5,0.5,100.0,0.1818,22.0,4,5
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,Round Robin (q=2),5.75,11.25,1.25,100.0,0.1818,22.0,10,11
+Workload 4 (Emergency Dominance - Dynamic Preemption),4,Round Robin (q=4),6.25,11.75,3.0,100.0,0.1818,22.0,6,7

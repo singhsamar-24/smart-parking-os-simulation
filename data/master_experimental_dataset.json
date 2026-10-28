@@ -1,0 +1,2051 @@
+{
+  "metadata": {
+    "project": "Smart Parking Management System \u2014 Operating Systems PBL",
+    "course": "CCSE0303A (Unit 2 & Unit 3)",
+    "institution": "NIET Greater Noida \u00b7 Department of CSE-AI",
+    "group": "Group 7 (Ishank Rana, Chhavi Attri, Aditi Singh, Pratyush Agrahari, Samar Singh)",
+    "faculty": "Mr. Amar Pal Yadav & Dr. Varsha Jotwani",
+    "timestamp": "2026-10-27T19:19:45.682514",
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]"
+  },
+  "experiments": {
+    "scheduling_benchmarks": [
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "FCFS",
+        "avg_waiting_time_sec": 11.4,
+        "avg_turnaround_time_sec": 17.0,
+        "avg_response_time_sec": 11.4,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 8.0,
+            "turnaround_time": 8.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 12.0,
+            "turnaround_time": 11.0,
+            "waiting_time": 7.0,
+            "response_time": 7.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 21.0,
+            "turnaround_time": 19.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 26.0,
+            "turnaround_time": 23.0,
+            "waiting_time": 18.0,
+            "response_time": 18.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 28.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 22.0,
+            "response_time": 22.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "SJF (Non-Preemptive)",
+        "avg_waiting_time_sec": 8.2,
+        "avg_turnaround_time_sec": 13.8,
+        "avg_response_time_sec": 8.2,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 8.0,
+            "turnaround_time": 8.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 10.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 4.0,
+            "response_time": 4.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 14.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 9.0,
+            "response_time": 9.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 19.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 11.0,
+            "response_time": 11.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 28.0,
+            "turnaround_time": 26.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "SRTF (Preemptive)",
+        "avg_waiting_time_sec": 6.6,
+        "avg_turnaround_time_sec": 12.2,
+        "avg_response_time_sec": 4.4,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 19.0,
+            "turnaround_time": 19.0,
+            "waiting_time": 11.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 5.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 28.0,
+            "turnaround_time": 26.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 12.0,
+            "turnaround_time": 9.0,
+            "waiting_time": 4.0,
+            "response_time": 4.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 7.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "Priority (Non-Preemptive)",
+        "avg_waiting_time_sec": 9.2,
+        "avg_turnaround_time_sec": 14.8,
+        "avg_response_time_sec": 9.2,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 8.0,
+            "turnaround_time": 8.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 12.0,
+            "turnaround_time": 11.0,
+            "waiting_time": 7.0,
+            "response_time": 7.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 17.0,
+            "turnaround_time": 14.0,
+            "waiting_time": 9.0,
+            "response_time": 9.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 19.0,
+            "turnaround_time": 15.0,
+            "waiting_time": 13.0,
+            "response_time": 13.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 28.0,
+            "turnaround_time": 26.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "Priority (Preemptive)",
+        "avg_waiting_time_sec": 8.2,
+        "avg_turnaround_time_sec": 13.8,
+        "avg_response_time_sec": 6.4,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 17.0,
+            "turnaround_time": 17.0,
+            "waiting_time": 9.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 5.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 28.0,
+            "turnaround_time": 26.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 10.0,
+            "turnaround_time": 7.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 19.0,
+            "turnaround_time": 15.0,
+            "waiting_time": 13.0,
+            "response_time": 13.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "Round Robin (q=2)",
+        "avg_waiting_time_sec": 13.0,
+        "avg_turnaround_time_sec": 18.6,
+        "avg_response_time_sec": 2.8,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 13,
+        "timeline_segments": 14,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 16.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 14.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 9.0,
+            "response_time": 1.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 28.0,
+            "turnaround_time": 26.0,
+            "waiting_time": 17.0,
+            "response_time": 2.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 25.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 17.0,
+            "response_time": 5.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 12.0,
+            "turnaround_time": 8.0,
+            "waiting_time": 6.0,
+            "response_time": 6.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 1 (Standard Mixed Traffic)",
+        "process_count": 5,
+        "algorithm": "Round Robin (q=4)",
+        "avg_waiting_time_sec": 13.0,
+        "avg_turnaround_time_sec": 18.6,
+        "avg_response_time_sec": 6.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1786,
+        "total_makespan_sec": 28.0,
+        "context_switches": 8,
+        "timeline_segments": 9,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-01-A101",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 22.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 14.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-16-B202",
+            "arrival_time": 1.0,
+            "burst_time": 4.0,
+            "priority": 1,
+            "completion_time": 8.0,
+            "turnaround_time": 7.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "HR-26-C303",
+            "arrival_time": 2.0,
+            "burst_time": 9.0,
+            "priority": 4,
+            "completion_time": 28.0,
+            "turnaround_time": 26.0,
+            "waiting_time": 17.0,
+            "response_time": 6.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-03-D404",
+            "arrival_time": 3.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 27.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 19.0,
+            "response_time": 9.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "UP-14-E505",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 18.0,
+            "turnaround_time": 14.0,
+            "waiting_time": 12.0,
+            "response_time": 12.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "FCFS",
+        "avg_waiting_time_sec": 12.0,
+        "avg_turnaround_time_sec": 16.0,
+        "avg_response_time_sec": 12.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 6.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 8.0,
+            "turnaround_time": 8.0,
+            "waiting_time": 6.0,
+            "response_time": 6.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 16.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 8.0,
+            "response_time": 8.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 19.0,
+            "turnaround_time": 19.0,
+            "waiting_time": 16.0,
+            "response_time": 16.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 23.0,
+            "turnaround_time": 23.0,
+            "waiting_time": 19.0,
+            "response_time": 19.0
+          },
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 23.0,
+            "response_time": 23.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "SJF (Non-Preemptive)",
+        "avg_waiting_time_sec": 6.0,
+        "avg_turnaround_time_sec": 10.0,
+        "avg_response_time_sec": 6.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 1.0,
+            "turnaround_time": 1.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 3.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 6.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 10.0,
+            "turnaround_time": 10.0,
+            "waiting_time": 6.0,
+            "response_time": 6.0
+          },
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 16.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 16.0,
+            "response_time": 16.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "SRTF (Preemptive)",
+        "avg_waiting_time_sec": 6.0,
+        "avg_turnaround_time_sec": 10.0,
+        "avg_response_time_sec": 6.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 16.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 3.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 16.0,
+            "response_time": 16.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 6.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 10.0,
+            "turnaround_time": 10.0,
+            "waiting_time": 6.0,
+            "response_time": 6.0
+          },
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 1.0,
+            "turnaround_time": 1.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "Priority (Non-Preemptive)",
+        "avg_waiting_time_sec": 8.0,
+        "avg_turnaround_time_sec": 12.0,
+        "avg_response_time_sec": 8.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 3.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 5.0,
+            "turnaround_time": 5.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 6.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 5.0,
+            "response_time": 5.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 14.0,
+            "turnaround_time": 14.0,
+            "waiting_time": 6.0,
+            "response_time": 6.0
+          },
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 14.0,
+            "response_time": 14.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 20.0,
+            "response_time": 20.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "Priority (Preemptive)",
+        "avg_waiting_time_sec": 8.0,
+        "avg_turnaround_time_sec": 12.0,
+        "avg_response_time_sec": 8.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 14.0,
+            "response_time": 14.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 5.0,
+            "turnaround_time": 5.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 14.0,
+            "turnaround_time": 14.0,
+            "waiting_time": 6.0,
+            "response_time": 6.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 3.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 20.0,
+            "response_time": 20.0
+          },
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 6.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 5.0,
+            "response_time": 5.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "Round Robin (q=2)",
+        "avg_waiting_time_sec": 11.5,
+        "avg_turnaround_time_sec": 15.5,
+        "avg_response_time_sec": 5.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 11,
+        "timeline_segments": 12,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 14.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 4.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 16.0,
+            "response_time": 4.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 16.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 13.0,
+            "response_time": 6.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 18.0,
+            "turnaround_time": 18.0,
+            "waiting_time": 14.0,
+            "response_time": 8.0
+          },
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 11.0,
+            "turnaround_time": 11.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 2 (Peak Rush Hour - Simultaneous Arrivals)",
+        "process_count": 6,
+        "algorithm": "Round Robin (q=4)",
+        "avg_waiting_time_sec": 12.33,
+        "avg_turnaround_time_sec": 16.33,
+        "avg_response_time_sec": 8.33,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.25,
+        "total_makespan_sec": 24.0,
+        "context_switches": 7,
+        "timeline_segments": 8,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-08-P100",
+            "arrival_time": 0.0,
+            "burst_time": 6.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 14.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-08-P200",
+            "arrival_time": 0.0,
+            "burst_time": 2.0,
+            "priority": 2,
+            "completion_time": 6.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 4.0,
+            "response_time": 4.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-08-P300",
+            "arrival_time": 0.0,
+            "burst_time": 8.0,
+            "priority": 3,
+            "completion_time": 24.0,
+            "turnaround_time": 24.0,
+            "waiting_time": 16.0,
+            "response_time": 6.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-08-P400",
+            "arrival_time": 0.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 13.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          },
+          "P5": {
+            "pid": "P5",
+            "plate": "DL-08-P500",
+            "arrival_time": 0.0,
+            "burst_time": 4.0,
+            "priority": 4,
+            "completion_time": 17.0,
+            "turnaround_time": 17.0,
+            "waiting_time": 13.0,
+            "response_time": 13.0
+          },
+          "P6": {
+            "pid": "P6",
+            "plate": "DL-08-P600",
+            "arrival_time": 0.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 18.0,
+            "turnaround_time": 18.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "FCFS",
+        "avg_waiting_time_sec": 15.0,
+        "avg_turnaround_time_sec": 21.25,
+        "avg_response_time_sec": 15.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 3,
+        "timeline_segments": 4,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 22.0,
+            "turnaround_time": 21.0,
+            "waiting_time": 19.0,
+            "response_time": 19.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 24.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 20.0,
+            "response_time": 20.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 25.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 21.0,
+            "response_time": 21.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "SJF (Non-Preemptive)",
+        "avg_waiting_time_sec": 14.5,
+        "avg_turnaround_time_sec": 20.75,
+        "avg_response_time_sec": 14.5,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 3,
+        "timeline_segments": 4,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 21.0,
+            "turnaround_time": 18.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 23.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 20.0,
+            "response_time": 20.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 25.0,
+            "turnaround_time": 23.0,
+            "waiting_time": 21.0,
+            "response_time": 21.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "SRTF (Preemptive)",
+        "avg_waiting_time_sec": 1.75,
+        "avg_turnaround_time_sec": 8.0,
+        "avg_response_time_sec": 0.5,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 25.0,
+            "turnaround_time": 25.0,
+            "waiting_time": 5.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 3.0,
+            "turnaround_time": 2.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 6.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 4.0,
+            "turnaround_time": 1.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "Priority (Non-Preemptive)",
+        "avg_waiting_time_sec": 14.5,
+        "avg_turnaround_time_sec": 20.75,
+        "avg_response_time_sec": 14.5,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 3,
+        "timeline_segments": 4,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 20.0,
+            "turnaround_time": 20.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 21.0,
+            "turnaround_time": 18.0,
+            "waiting_time": 17.0,
+            "response_time": 17.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 23.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 20.0,
+            "response_time": 20.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 25.0,
+            "turnaround_time": 23.0,
+            "waiting_time": 21.0,
+            "response_time": 21.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "Priority (Preemptive)",
+        "avg_waiting_time_sec": 1.75,
+        "avg_turnaround_time_sec": 8.0,
+        "avg_response_time_sec": 0.5,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 25.0,
+            "turnaround_time": 25.0,
+            "waiting_time": 5.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 3.0,
+            "turnaround_time": 2.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 6.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 4.0,
+            "turnaround_time": 1.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "Round Robin (q=2)",
+        "avg_waiting_time_sec": 3.25,
+        "avg_turnaround_time_sec": 9.5,
+        "avg_response_time_sec": 2.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 5,
+        "timeline_segments": 6,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 25.0,
+            "turnaround_time": 25.0,
+            "waiting_time": 5.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 4.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 6.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 9.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 5.0,
+            "response_time": 5.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 3 (Convoy Effect - Heavy Truck Precedes Short Cars)",
+        "process_count": 4,
+        "algorithm": "Round Robin (q=4)",
+        "avg_waiting_time_sec": 4.25,
+        "avg_turnaround_time_sec": 10.5,
+        "avg_response_time_sec": 3.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.16,
+        "total_makespan_sec": 25.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "HR-55-TRUCK",
+            "arrival_time": 0.0,
+            "burst_time": 20.0,
+            "priority": 4,
+            "completion_time": 25.0,
+            "turnaround_time": 25.0,
+            "waiting_time": 5.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "UP-32-MINI1",
+            "arrival_time": 1.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 6.0,
+            "turnaround_time": 5.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "UP-32-MINI2",
+            "arrival_time": 2.0,
+            "burst_time": 2.0,
+            "priority": 3,
+            "completion_time": 8.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 4.0,
+            "response_time": 4.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "UP-32-MINI3",
+            "arrival_time": 3.0,
+            "burst_time": 1.0,
+            "priority": 2,
+            "completion_time": 9.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 5.0,
+            "response_time": 5.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "FCFS",
+        "avg_waiting_time_sec": 8.0,
+        "avg_turnaround_time_sec": 13.5,
+        "avg_response_time_sec": 8.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 3,
+        "timeline_segments": 4,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 12.0,
+            "turnaround_time": 12.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 15.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 17.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 11.0,
+            "response_time": 11.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 22.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 11.0,
+            "response_time": 11.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "SJF (Non-Preemptive)",
+        "avg_waiting_time_sec": 7.75,
+        "avg_turnaround_time_sec": 13.25,
+        "avg_response_time_sec": 7.75,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 3,
+        "timeline_segments": 4,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 12.0,
+            "turnaround_time": 12.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 14.0,
+            "turnaround_time": 10.0,
+            "waiting_time": 8.0,
+            "response_time": 8.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 17.0,
+            "turnaround_time": 15.0,
+            "waiting_time": 12.0,
+            "response_time": 12.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 22.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 11.0,
+            "response_time": 11.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "SRTF (Preemptive)",
+        "avg_waiting_time_sec": 3.0,
+        "avg_turnaround_time_sec": 8.5,
+        "avg_response_time_sec": 0.5,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 22.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 10.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 5.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 7.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 12.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "Priority (Non-Preemptive)",
+        "avg_waiting_time_sec": 8.0,
+        "avg_turnaround_time_sec": 13.5,
+        "avg_response_time_sec": 8.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 3,
+        "timeline_segments": 4,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 12.0,
+            "turnaround_time": 12.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 15.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 10.0,
+            "response_time": 10.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 17.0,
+            "turnaround_time": 13.0,
+            "waiting_time": 11.0,
+            "response_time": 11.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 22.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 11.0,
+            "response_time": 11.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "Priority (Preemptive)",
+        "avg_waiting_time_sec": 3.0,
+        "avg_turnaround_time_sec": 8.5,
+        "avg_response_time_sec": 0.5,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 4,
+        "timeline_segments": 5,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 22.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 10.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 5.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 0.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 7.0,
+            "turnaround_time": 3.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 12.0,
+            "turnaround_time": 6.0,
+            "waiting_time": 1.0,
+            "response_time": 1.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "Round Robin (q=2)",
+        "avg_waiting_time_sec": 5.75,
+        "avg_turnaround_time_sec": 11.25,
+        "avg_response_time_sec": 1.25,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 10,
+        "timeline_segments": 11,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 22.0,
+            "turnaround_time": 22.0,
+            "waiting_time": 10.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 9.0,
+            "turnaround_time": 7.0,
+            "waiting_time": 4.0,
+            "response_time": 0.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 8.0,
+            "turnaround_time": 4.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 18.0,
+            "turnaround_time": 12.0,
+            "waiting_time": 7.0,
+            "response_time": 3.0
+          }
+        }
+      },
+      {
+        "workload": "Workload 4 (Emergency Dominance - Dynamic Preemption)",
+        "process_count": 4,
+        "algorithm": "Round Robin (q=4)",
+        "avg_waiting_time_sec": 6.25,
+        "avg_turnaround_time_sec": 11.75,
+        "avg_response_time_sec": 3.0,
+        "cpu_utilization_pct": 100.0,
+        "throughput_proc_per_sec": 0.1818,
+        "total_makespan_sec": 22.0,
+        "context_switches": 6,
+        "timeline_segments": 7,
+        "detailed_metrics": {
+          "P1": {
+            "pid": "P1",
+            "plate": "DL-02-CAR01",
+            "arrival_time": 0.0,
+            "burst_time": 12.0,
+            "priority": 4,
+            "completion_time": 21.0,
+            "turnaround_time": 21.0,
+            "waiting_time": 9.0,
+            "response_time": 0.0
+          },
+          "P2": {
+            "pid": "P2",
+            "plate": "DL-02-AMBU1",
+            "arrival_time": 2.0,
+            "burst_time": 3.0,
+            "priority": 1,
+            "completion_time": 7.0,
+            "turnaround_time": 5.0,
+            "waiting_time": 2.0,
+            "response_time": 2.0
+          },
+          "P3": {
+            "pid": "P3",
+            "plate": "DL-02-POL01",
+            "arrival_time": 4.0,
+            "burst_time": 2.0,
+            "priority": 1,
+            "completion_time": 9.0,
+            "turnaround_time": 5.0,
+            "waiting_time": 3.0,
+            "response_time": 3.0
+          },
+          "P4": {
+            "pid": "P4",
+            "plate": "DL-02-EV001",
+            "arrival_time": 6.0,
+            "burst_time": 5.0,
+            "priority": 2,
+            "completion_time": 22.0,
+            "turnaround_time": 16.0,
+            "waiting_time": 11.0,
+            "response_time": 7.0
+          }
+        }
+      }
+    ],
+    "deadlock_avoidance": [
+      {
+        "test_case_id": "TC-BANKER-01",
+        "description": "Initial State Safety Verification",
+        "tested_process": "ALL",
+        "request_vector": "N/A",
+        "is_safe": true,
+        "safe_sequence": "P1 -> P3 -> P4 -> P0 -> P2",
+        "outcome": "SAFE STATE VERIFIED",
+        "detail": "Step sequence: P1 -> P3 -> P4 -> P0 -> P2"
+      },
+      {
+        "test_case_id": "TC-BANKER-02",
+        "description": "Valid Safe Request: P1 requests [1, 0, 2, 0]",
+        "tested_process": "P1",
+        "request_vector": "[1, 0, 2, 0]",
+        "is_safe": true,
+        "safe_sequence": "P1 -> P3 -> P4 -> P0 -> P2",
+        "outcome": "GRANTED (SAFE)",
+        "detail": "Tentative state proven deadlock-free."
+      },
+      {
+        "test_case_id": "TC-BANKER-03",
+        "description": "Over-Claim Request (Step 1 Violation): P0 requests [8, 0, 0, 0] (Exceeds Max Need)",
+        "tested_process": "P0",
+        "request_vector": "[8, 0, 0, 0]",
+        "is_safe": false,
+        "safe_sequence": "None",
+        "outcome": "DENIED / BLOCKED",
+        "detail": "Step 1 Error: Process P0 requested [8, 0, 0, 0], which exceeds its declared Need [7, 4, 3, 2]."
+      },
+      {
+        "test_case_id": "TC-BANKER-04",
+        "description": "Resource Starvation / Insufficient Available (Step 2 Violation): P4 requests [4, 4, 4, 4]",
+        "tested_process": "P4",
+        "request_vector": "[4, 4, 4, 4]",
+        "is_safe": false,
+        "safe_sequence": "None",
+        "outcome": "DENIED / BLOCKED",
+        "detail": "Step 1 Error: Process P4 requested [4, 4, 4, 4], which exceeds its declared Need [4, 3, 1, 2]."
+      },
+      {
+        "test_case_id": "TC-BANKER-05",
+        "description": "Unsafe State Avoidance (Step 4 Deadlock Risk): P0 requests [0, 2, 0, 0]",
+        "tested_process": "P0",
+        "request_vector": "[0, 2, 0, 0]",
+        "is_safe": false,
+        "safe_sequence": "None",
+        "outcome": "DENIED / BLOCKED",
+        "detail": "Granting this request would cause a potential Deadlock. Denied."
+      },
+      {
+        "test_case_id": "TC-RAG-01",
+        "description": "Acyclic RAG (Linear Allocation & Request)",
+        "tested_process": "P1, P2",
+        "request_vector": "[('P1', 'R1'), ('R1', 'P2'), ('P2', 'R2')]",
+        "is_safe": true,
+        "safe_sequence": "Acyclic - Free of Deadlock",
+        "outcome": "NO DEADLOCK DETECTED",
+        "detail": "None (no circular wait)"
+      },
+      {
+        "test_case_id": "TC-RAG-02",
+        "description": "Cyclic RAG (Circular Wait Deadlock Condition)",
+        "tested_process": "P1, P2",
+        "request_vector": "[('P1', 'R1'), ('R1', 'P2'), ('P2', 'R2'), ('R2', 'P1')]",
+        "is_safe": false,
+        "safe_sequence": "CYCLE DETECTED: P1 -> R1 -> P2 -> R2 -> P1",
+        "outcome": "DEADLOCK CONFIRMED (CIRCULAR WAIT)",
+        "detail": "Preempt the lowest-priority vehicle to break the cycle."
+      }
+    ],
+    "concurrency_control": [
+      {
+        "module": "Critical Section",
+        "mechanism": "None (Unsynchronized)",
+        "threads_tested": 2,
+        "mutual_exclusion_preserved": false,
+        "data_race_collision": true,
+        "status": "VULNERABLE TO RACE CONDITION",
+        "observation": "Both threads read slot as FREE concurrently, resulting in double allocation collision."
+      },
+      {
+        "module": "Critical Section",
+        "mechanism": "Mutex Lock (threading.Lock)",
+        "threads_tested": 2,
+        "mutual_exclusion_preserved": true,
+        "data_race_collision": false,
+        "status": "MUTUAL EXCLUSION GUARANTEED",
+        "observation": "Thread B blocked at gate until Thread A completed atomic acquisition and released mutex."
+      },
+      {
+        "module": "Peterson's Algorithm",
+        "mechanism": "Software Busy-Wait Flags & Turn Variable",
+        "threads_tested": 2,
+        "mutual_exclusion_preserved": true,
+        "data_race_collision": false,
+        "status": "FORMAL PROOF VERIFIED",
+        "observation": "Flag[0]=True, Flag[1]=True, Turn variable arbitrated mutual exclusion, progress, and bounded waiting."
+      },
+      {
+        "module": "Hardware TSL",
+        "mechanism": "Atomic Test-and-Set Instruction",
+        "threads_tested": 2,
+        "mutual_exclusion_preserved": true,
+        "data_race_collision": false,
+        "status": "HARDWARE ATOMICITY VERIFIED",
+        "observation": "TSL atomic read-modify-write prevents preemption between test and lock assertion."
+      },
+      {
+        "module": "Counting Semaphore",
+        "mechanism": "Counting Semaphore (S.wait() / S.signal())",
+        "threads_tested": 18,
+        "mutual_exclusion_preserved": true,
+        "data_race_collision": false,
+        "status": "CAPACITY & SLEEP QUEUE VERIFIED",
+        "observation": "16 slots safely granted; exactly 2 overflow threads queued in sleep queue."
+      }
+    ],
+    "classical_synchronization": [
+      {
+        "problem": "Producer-Consumer",
+        "ipc_construct": "Bounded Buffer + Counting Semaphore + Mutex",
+        "operations_run": 8,
+        "buffer_capacity": 5,
+        "boundary_condition_handled": "Buffer Full & Empty Blocks Enforced",
+        "state_validation": "PASSED"
+      },
+      {
+        "problem": "Reader-Writer",
+        "ipc_construct": "Reader Priority Mutex & Write Lock",
+        "operations_run": 5,
+        "buffer_capacity": "N/A",
+        "boundary_condition_handled": "Writers Blocked while Readers Active",
+        "state_validation": "PASSED"
+      },
+      {
+        "problem": "Sleeping Barber",
+        "ipc_construct": "Sleeping Gatekeeper Mutex + Condition Waiting Bays",
+        "operations_run": 6,
+        "buffer_capacity": 4,
+        "boundary_condition_handled": "Attendant Sleep/Wake + Waiting Capacity Saturation",
+        "state_validation": "PASSED"
+      },
+      {
+        "problem": "Dining Philosophers",
+        "ipc_construct": "Resource Hierarchy / Chandy-Misra Asymmetric Pick",
+        "operations_run": 2,
+        "buffer_capacity": 5,
+        "boundary_condition_handled": "Circular Wait Deadlock Triggered & Resolved",
+        "state_validation": "PASSED"
+      }
+    ]
+  }
+}

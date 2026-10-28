@@ -1,0 +1,8 @@
+test_case_id,description,tested_process,request_vector,is_safe,safe_sequence,outcome,detail
+TC-BANKER-01,Initial State Safety Verification,ALL,N/A,True,P1 -> P3 -> P4 -> P0 -> P2,SAFE STATE VERIFIED,Step sequence: P1 -> P3 -> P4 -> P0 -> P2
+TC-BANKER-02,"Valid Safe Request: P1 requests [1, 0, 2, 0]",P1,"[1, 0, 2, 0]",True,P1 -> P3 -> P4 -> P0 -> P2,GRANTED (SAFE),Tentative state proven deadlock-free.
+TC-BANKER-03,"Over-Claim Request (Step 1 Violation): P0 requests [8, 0, 0, 0] (Exceeds Max Need)",P0,"[8, 0, 0, 0]",False,None,DENIED / BLOCKED,"Step 1 Error: Process P0 requested [8, 0, 0, 0], which exceeds its declared Need [7, 4, 3, 2]."
+TC-BANKER-04,"Resource Starvation / Insufficient Available (Step 2 Violation): P4 requests [4, 4, 4, 4]",P4,"[4, 4, 4, 4]",False,None,DENIED / BLOCKED,"Step 1 Error: Process P4 requested [4, 4, 4, 4], which exceeds its declared Need [4, 3, 1, 2]."
+TC-BANKER-05,"Unsafe State Avoidance (Step 4 Deadlock Risk): P0 requests [0, 2, 0, 0]",P0,"[0, 2, 0, 0]",False,None,DENIED / BLOCKED,Granting this request would cause a potential Deadlock. Denied.
+TC-RAG-01,Acyclic RAG (Linear Allocation & Request),"P1, P2","[('P1', 'R1'), ('R1', 'P2'), ('P2', 'R2')]",True,Acyclic - Free of Deadlock,NO DEADLOCK DETECTED,None (no circular wait)
+TC-RAG-02,Cyclic RAG (Circular Wait Deadlock Condition),"P1, P2","[('P1', 'R1'), ('R1', 'P2'), ('P2', 'R2'), ('R2', 'P1')]",False,CYCLE DETECTED: P1 -> R1 -> P2 -> R2 -> P1,DEADLOCK CONFIRMED (CIRCULAR WAIT),Preempt the lowest-priority vehicle to break the cycle.

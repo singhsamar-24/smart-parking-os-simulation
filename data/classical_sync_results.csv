@@ -1,0 +1,5 @@
+problem,ipc_construct,operations_run,buffer_capacity,boundary_condition_handled,state_validation
+Producer-Consumer,Bounded Buffer + Counting Semaphore + Mutex,8,5,Buffer Full & Empty Blocks Enforced,PASSED
+Reader-Writer,Reader Priority Mutex & Write Lock,5,N/A,Writers Blocked while Readers Active,PASSED
+Sleeping Barber,Sleeping Gatekeeper Mutex + Condition Waiting Bays,6,4,Attendant Sleep/Wake + Waiting Capacity Saturation,PASSED
+Dining Philosophers,Resource Hierarchy / Chandy-Misra Asymmetric Pick,2,5,Circular Wait Deadlock Triggered & Resolved,PASSED
